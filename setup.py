@@ -61,14 +61,14 @@ class build(_build):
 class PostInstallCommand(install):
     """Post-installation for installation mode."""
     def run(self):
-        makeparsers()
+        makeparsers(force=True)
         install.run(self)
 
 
 class PostDevelopCommand(develop):
     """Post-installation for development mode."""
     def run(self):
-        makeparsers()
+        makeparsers(force=True)
         develop.run(self)
 
 
