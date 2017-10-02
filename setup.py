@@ -71,7 +71,7 @@ if __name__ == '__main__':
         scripts=[],
         data_files=[],
         install_requires=['pijnu>=20160727'],
-        cmdclass={'build_parsers': build_parsers, 'build': build, 'install': build_parsers},
+        cmdclass={'build_parsers': build_parsers, 'build': build, 'install': build},
         classifiers=[
           'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
           'Development Status :: 4 - Beta',
