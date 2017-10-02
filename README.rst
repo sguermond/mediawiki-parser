@@ -36,13 +36,14 @@ Building the parsers
 ====================
 
 The preprocessor and mediwiki parsers must be built from the Pijnu
-grammars before you can use mediawiki-parser. You can build them through
-setup.py, possibly setting the PYTHONPATH to point at pijnu:
+grammars before you can use mediawiki-parser. They should be built 
+automatically during install, but you can re-build them through
+setup.py:
 
 ::
 
  cd /PATH/TO/mediawiki-parser/
- env PYTHONPATH=/PATH/TO/pijnu python setup.py build_parsers
+ python setup.py build_parsers
 
 How to test
 ===========
