@@ -4,6 +4,7 @@ import os
 from setuptools import setup
 from distutils.cmd import Command
 from distutils.command.build import build as _build
+from setuptools.command.install import install
 
 # Utility function to read the README file.
 # Used for the long_description.  It's nice, because now 1) we have a top level
@@ -56,6 +57,13 @@ class build(_build):
     sub_commands = [ ('build_parsers', None) ] + _build.sub_commands
 
 
+class PostInstallCommand(install):
+    """Post-installation for installation mode."""
+    def run(self):
+        makeparsers()
+        install.run(self)
+
+
 if __name__ == '__main__':
     setup(
         name="mediawiki-parser",
@@ -71,7 +79,7 @@ if __name__ == '__main__':
         scripts=[],
         data_files=[],
         install_requires=['pijnu>=20160727'],
-        cmdclass={'build_parsers': build_parsers, 'build': build, 'install': build},
+        cmdclass={'build_parsers': build_parsers, 'build': build, 'install': install},
         classifiers=[
           'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
           'Development Status :: 4 - Beta',
