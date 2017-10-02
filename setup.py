@@ -23,17 +23,21 @@ def inputNewer(inputFile, outputFile):
 def makeparsers(force=False):
     from pijnu import makeParser
     import os
-    inputFile = "preprocessor.pijnu"
-    outputFile = os.path.join("mediawiki_parser", "preprocessorParser.py")
+
+    localpath = os.path.dirname(__file__)
+    mediawiki_path = os.path.join(localpath, "mediawiki_parser")
+
+    inputFile = os.path.join(localpath, "preprocessor.pijnu")
+    outputFile = os.path.join(mediawiki_path, "preprocessorParser.py")
     if force or inputNewer(inputFile, outputFile):
         preprocessorGrammar = open(inputFile).read()
-        makeParser(preprocessorGrammar, outputPath="mediawiki_parser")
+        makeParser(preprocessorGrammar, outputPath=mediawiki_path)
 
-    inputFile = "mediawiki.pijnu"
-    outputFile = os.path.join("mediawiki_parser", "wikitextParser.py")
+    inputFile = os.path.join(localpath, "mediawiki.pijnu")
+    outputFile = os.path.join(mediawiki_path, "wikitextParser.py")
     if force or inputNewer(inputFile, outputFile):
         mediawikiGrammar = open(inputFile).read()
-        makeParser(mediawikiGrammar, outputPath="mediawiki_parser")
+        makeParser(mediawikiGrammar, outputPath=mediawiki_path)
 
 class build_parsers(Command):
     description = "Build the pijnu parsers for mediawiki_parser"
